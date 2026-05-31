@@ -1,6 +1,0 @@
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-<defs><filter id="g" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="14" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<rect x="48" y="48" width="416" height="416" rx="112" fill="#0B1020"/>
-<circle cx="256" cy="256" r="178" fill="#B66CFF" opacity=".16" filter="url(#g)"/>
-<g fill="#B66CFF" filter="url(#g)"><path d="M256 108c44 44 66 90 66 138 0 39-24 71-66 96-42-25-66-57-66-96 0-48 22-94 66-138Z"/><path d="M154 356c38-17 72-27 102-27s64 10 102 27c-23 30-57 46-102 46s-79-16-102-46Z"/><circle cx="256" cy="247" r="36" fill="#fff" opacity=".85"/></g>
-</svg>
