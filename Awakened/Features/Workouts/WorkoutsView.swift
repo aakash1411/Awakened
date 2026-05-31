@@ -52,7 +52,7 @@ struct WorkoutsView: View {
                 .padding(.vertical, AppSpacing.sm)
             }
         }
-        .navigationTitle("Workouts")
+        .navigationTitle("Workout Log")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

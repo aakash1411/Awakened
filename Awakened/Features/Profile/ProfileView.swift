@@ -7,8 +7,7 @@ struct ProfileView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var players: [Player]
     
-    @State private var showingStatAllocation = false
-    @State private var showingSettings = false
+    @State private var showingRank = false
     
     private var player: Player? {
         players.first
@@ -23,17 +22,19 @@ struct ProfileView: View {
                 if let player = player {
                     ScrollView {
                         VStack(spacing: AppSpacing.lg) {
-                            // Profile header
-                            ProfileHeader(player: player)
+                            // Profile header — tap to open the rank/level screen
+                            Button {
+                                showingRank = true
+                            } label: {
+                                ProfileHeader(player: player)
+                            }
+                            .buttonStyle(.plain)
                             
                             // Stats detail
                             StatsDetailSection(player: player)
                             
                             // Achievements preview
                             AchievementsPreview()
-                            
-                            // Settings
-                            SettingsSection()
                             
                             Spacer(minLength: AppSpacing.xxl)
                         }
@@ -47,6 +48,21 @@ struct ProfileView: View {
             }
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        SettingsView()
+                    } label: {
+                        Image(systemName: "gearshape.fill")
+                            .foregroundColor(AppColors.textSecondary)
+                    }
+                }
+            }
+            .sheet(isPresented: $showingRank) {
+                NavigationStack {
+                    RankLevelUpView()
+                }
+            }
         }
     }
     
@@ -97,9 +113,9 @@ struct ProfileHeader: View {
             
             // Quick stats
             HStack(spacing: AppSpacing.xl) {
+                QuickStat(title: "Workouts", value: "\(player.workoutSessions.count)")
+                QuickStat(title: "Day Streak", value: "\(player.currentStreak)")
                 QuickStat(title: "Total XP", value: formatNumber(player.totalXP))
-                QuickStat(title: "Streak", value: "\(player.currentStreak) days")
-                QuickStat(title: "Quests", value: "\(player.completedQuests.count)")
             }
         }
         .padding(AppSpacing.lg)

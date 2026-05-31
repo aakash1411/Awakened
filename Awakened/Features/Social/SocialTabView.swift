@@ -20,7 +20,7 @@ struct SocialTabView: View {
                     .padding(.top, AppSpacing.md)
                 }
             }
-            .navigationTitle("Social")
+            .navigationTitle("Community")
             .navigationBarTitleDisplayMode(.large)
         }
     }

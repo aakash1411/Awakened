@@ -9,6 +9,7 @@ struct DashboardView: View {
     @State private var showWeeklyRecap = false
     @State private var weeklyRecap: WeeklyRecap?
     @State private var selectedStat: StatType?
+    @State private var showAllQuests = false
     
     private var player: Player? {
         players.first
@@ -30,19 +31,20 @@ struct DashboardView: View {
                                     .padding(.horizontal, AppSpacing.screenHorizontal)
                             }
                             
-                            // 1. Level + Rank + XP
-                            PlayerLevelCard(player: player)
+                            // 1. Hero header — greeting, level/rank, total power, EXP
+                            HomeHeroCard(player: player)
                                 .padding(.horizontal, AppSpacing.screenHorizontal)
                             
-                            // 2. Pentagon Radar Chart
-                            RadarChartView(stats: player.sortedStats) { statType in
+                            // 2. Five Fields Overview (pentagon radar)
+                            FiveFieldsOverviewCard(player: player) { statType in
                                 selectedStat = statType
                             }
-                            .frame(height: 280)
                             .padding(.horizontal, AppSpacing.screenHorizontal)
                             
                             // 3. Daily Quests
-                            DailyQuestCard(quests: player.todayQuests)
+                            DailyQuestCard(quests: player.todayQuests) {
+                                showAllQuests = true
+                            }
                                 .padding(.horizontal, AppSpacing.screenHorizontal)
                             
                             // 4. Streak Stats
@@ -104,6 +106,9 @@ struct DashboardView: View {
             .onAppear {
                 checkWeeklyRecap()
             }
+            .navigationDestination(isPresented: $showAllQuests) {
+                DailyQuestsView()
+            }
             .navigationDestination(item: $selectedStat) { statType in
                 switch statType {
                 case .strength:
@@ -129,6 +134,144 @@ struct DashboardView: View {
         weeklyRecap = recapService.generateRecap(for: player, syncEngine: syncEngine)
         recapService.markRecapShown()
         showWeeklyRecap = true
+    }
+}
+
+// MARK: - Home Hero Card
+
+/// Anime-mockup home header: greeting + avatar, level/rank, total power, EXP bar.
+struct HomeHeroCard: View {
+    let player: Player
+
+    private var greeting: String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        switch hour {
+        case 5..<12: return "Good morning,"
+        case 12..<17: return "Good afternoon,"
+        case 17..<22: return "Good evening,"
+        default: return "Good night,"
+        }
+    }
+
+    private var totalPower: Int {
+        player.sortedStats.reduce(0) { $0 + $1.effectiveLevel }
+    }
+
+    var body: some View {
+        VStack(spacing: AppSpacing.md) {
+            // Greeting + avatar
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(greeting)
+                        .font(AppFonts.subheadline)
+                        .foregroundColor(AppColors.textSecondary)
+                    Text(player.name)
+                        .font(AppFonts.title2)
+                        .foregroundColor(AppColors.textPrimary)
+                    Text("The shadow monarch never stops.")
+                        .font(AppFonts.caption1)
+                        .foregroundColor(AppColors.textTertiary)
+                }
+
+                Spacer()
+
+                // Avatar placeholder — drop in character art asset later.
+                ZStack {
+                    Circle()
+                        .fill(
+                            LinearGradient(
+                                colors: [AppColors.accentPurple, AppColors.primaryBlue],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .frame(width: 56, height: 56)
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 26))
+                        .foregroundColor(.white.opacity(0.9))
+                }
+                .overlay(
+                    Circle().stroke(AppColors.accentPurple.opacity(0.5), lineWidth: 2)
+                )
+            }
+
+            // Level / Rank + Total Power
+            HStack(spacing: AppSpacing.md) {
+                statBlock(title: "LEVEL", value: "\(player.level)", subtitle: player.rank.displayName, color: player.rank.color)
+
+                Rectangle()
+                    .fill(AppColors.border)
+                    .frame(width: 1, height: 36)
+
+                statBlock(title: "TOTAL POWER", value: "\(totalPower)", subtitle: "Across five fields", color: AppColors.accentPurple)
+
+                Spacer()
+            }
+
+            // EXP bar
+            VStack(alignment: .leading, spacing: 4) {
+                XPProgressBar(progress: player.levelProgress, height: 6, showShine: true)
+                Text("EXP \(player.xpProgressInCurrentLevel) / \(player.xpNeededForNextLevel)")
+                    .font(.system(size: 10, weight: .medium, design: .monospaced))
+                    .foregroundColor(AppColors.textTertiary)
+            }
+        }
+        .padding(AppSpacing.cardPadding)
+        .background(
+            LinearGradient(
+                colors: [AppColors.surface, AppColors.surfaceElevated],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
+        .cornerRadius(AppSpacing.cardCornerRadius)
+        .overlay(
+            RoundedRectangle(cornerRadius: AppSpacing.cardCornerRadius)
+                .stroke(AppColors.accentPurple.opacity(0.35), lineWidth: 1)
+        )
+    }
+
+    private func statBlock(title: String, value: String, subtitle: String, color: Color) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(title)
+                .font(.system(size: 10, weight: .semibold, design: .monospaced))
+                .foregroundColor(AppColors.textTertiary)
+            Text(value)
+                .font(.system(size: 26, weight: .bold, design: .rounded))
+                .foregroundColor(AppColors.textPrimary)
+            Text(subtitle)
+                .font(AppFonts.caption2)
+                .foregroundColor(color)
+        }
+    }
+}
+
+// MARK: - Five Fields Overview Card
+
+/// Titled card wrapping the pentagon radar for the home screen.
+struct FiveFieldsOverviewCard: View {
+    let player: Player
+    var onStatTap: ((StatType) -> Void)?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.sm) {
+            Text("Five Fields Overview")
+                .font(AppFonts.headline)
+                .foregroundColor(AppColors.textPrimary)
+
+            RadarChartView(stats: player.sortedStats) { statType in
+                onStatTap?(statType)
+            }
+            .frame(height: 260)
+        }
+        .padding(AppSpacing.cardPadding)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(AppColors.surface)
+        .cornerRadius(AppSpacing.cardCornerRadius)
+        .overlay(
+            RoundedRectangle(cornerRadius: AppSpacing.cardCornerRadius)
+                .stroke(AppColors.border, lineWidth: 1)
+        )
     }
 }
 
@@ -264,6 +407,8 @@ struct PenaltyZoneWarning: View {
 
 struct DailyQuestCard: View {
     let quests: [Quest]
+    /// Optional "See all" action; when set, a chevron affordance is shown.
+    var onSeeAll: (() -> Void)? = nil
     @State private var isExpanded = false
     
     private var completedCount: Int {
@@ -282,15 +427,28 @@ struct DailyQuestCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
             HStack {
-                Text("Daily Quest")
+                Text("Today's Quests")
                     .font(AppFonts.headline)
-                    .foregroundColor(AppColors.textSecondary)
+                    .foregroundColor(AppColors.textPrimary)
                 
                 Spacer()
                 
-                Text("\(completedCount)/\(totalCount)")
-                    .font(AppFonts.subheadline)
-                    .foregroundColor(AppColors.textTertiary)
+                if let onSeeAll {
+                    Button(action: onSeeAll) {
+                        HStack(spacing: 4) {
+                            Text("\(completedCount)/\(totalCount)")
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 11, weight: .semibold))
+                        }
+                        .font(AppFonts.subheadline)
+                        .foregroundColor(AppColors.accentPurple)
+                    }
+                    .buttonStyle(.plain)
+                } else {
+                    Text("\(completedCount)/\(totalCount) Completed")
+                        .font(AppFonts.subheadline)
+                        .foregroundColor(AppColors.textTertiary)
+                }
             }
             
             if quests.isEmpty {
