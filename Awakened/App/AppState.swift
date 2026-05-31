@@ -15,7 +15,7 @@ class AppState: ObservableObject {
     @Published var currentPlayer: Player?
     
     /// Currently selected tab
-    @Published var selectedTab: AppTab = .status
+    @Published var selectedTab: AppTab = .home
     
     /// Whether to show level up animation
     @Published var showLevelUpAnimation: Bool = false
@@ -270,11 +270,13 @@ class AppState: ObservableObject {
 // MARK: - Supporting Types
 
 /// App tab enumeration
+/// Primary bottom-bar destinations, matching the Anime mockup:
+/// Home · Progress · (center crest button) · Community · Profile.
+/// Workout and Nutrition are reached from Home and the center quick-action button.
 enum AppTab: String, CaseIterable, Identifiable {
-    case status
-    case nutrition
-    case workouts
-    case social
+    case home
+    case progress
+    case community
     case profile
     
     var id: String { rawValue }
@@ -285,10 +287,9 @@ enum AppTab: String, CaseIterable, Identifiable {
     
     var icon: String {
         switch self {
-        case .status: return "person.text.rectangle"
-        case .nutrition: return "fork.knife"
-        case .workouts: return "figure.run"
-        case .social: return "person.2.fill"
+        case .home: return "house.fill"
+        case .progress: return "chart.bar.fill"
+        case .community: return "person.2.fill"
         case .profile: return "person.fill"
         }
     }

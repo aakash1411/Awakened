@@ -35,47 +35,43 @@ struct ContentView: View {
     }
 }
 
-/// Main tab view with bottom navigation
+/// Main tab view with the custom Anime bottom navigation
+/// (Home · Progress · center crest · Community · Profile).
 struct MainTabView: View {
     @EnvironmentObject private var appState: AppState
+    @State private var showQuickActions = false
     
     var body: some View {
-        TabView(selection: $appState.selectedTab) {
-            DashboardView()
-                .tabItem {
-                    Label(AppTab.status.title, systemImage: AppTab.status.icon)
-                }
-                .tag(AppTab.status)
+        ZStack(alignment: .bottom) {
+            AppColors.background.ignoresSafeArea()
             
-            NavigationStack {
-                NutritionView()
-            }
-                .tabItem {
-                    Label(AppTab.nutrition.title, systemImage: AppTab.nutrition.icon)
+            // Active destination fills the screen; the bar is added as a
+            // bottom safe-area inset so each screen's content isn't hidden.
+            selectedScreen
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .safeAreaInset(edge: .bottom, spacing: 0) {
+                    AnimeTabBar(selection: $appState.selectedTab) {
+                        showQuickActions = true
+                    }
                 }
-                .tag(AppTab.nutrition)
-            
-            NavigationStack {
-                WorkoutsView()
-            }
-                .tabItem {
-                    Label(AppTab.workouts.title, systemImage: AppTab.workouts.icon)
-                }
-                .tag(AppTab.workouts)
-            
-            SocialTabView()
-                .tabItem {
-                    Label(AppTab.social.title, systemImage: AppTab.social.icon)
-                }
-                .tag(AppTab.social)
-            
-            ProfileView()
-                .tabItem {
-                    Label(AppTab.profile.title, systemImage: AppTab.profile.icon)
-                }
-                .tag(AppTab.profile)
         }
-        .tint(AppColors.primaryBlue)
+        .sheet(isPresented: $showQuickActions) {
+            QuickActionsSheet()
+        }
+    }
+    
+    @ViewBuilder
+    private var selectedScreen: some View {
+        switch appState.selectedTab {
+        case .home:
+            DashboardView()
+        case .progress:
+            ProgressDashboardView()
+        case .community:
+            SocialTabView()
+        case .profile:
+            ProfileView()
+        }
     }
 }
 
