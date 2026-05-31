@@ -26,8 +26,9 @@ final class ThemeManager: ObservableObject {
             self.current = theme
             return
         }
-        let presetID = UserDefaults.standard.string(forKey: Self.presetThemeKey) ?? AppTheme.awakened.id
-        self.current = AppTheme.presets.first(where: { $0.id == presetID }) ?? .awakened
+        // Anime (dark, gamified) is the app's primary/default theme.
+        let presetID = UserDefaults.standard.string(forKey: Self.presetThemeKey) ?? AppTheme.anime.id
+        self.current = AppTheme.presets.first(where: { $0.id == presetID }) ?? .anime
     }
     
     /// UserDefaults key for the selected preset id (used when the active theme is a preset)

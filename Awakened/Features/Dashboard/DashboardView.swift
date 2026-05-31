@@ -75,7 +75,7 @@ struct DashboardView: View {
                     }
                 }
             }
-            .navigationTitle("Status")
+            .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
