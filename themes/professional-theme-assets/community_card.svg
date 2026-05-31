@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="210" viewBox="0 0 390 210" fill="none">
+  <rect x="10" y="10" width="370" height="190" rx="24" fill="#FFFFFF" stroke="#E5E0D8"/>
+  <circle cx="46" cy="48" r="20" fill="#DDEAE6"/><path d="M38 51c8-7 17-7 24 0M41 43a7 7 0 1 0 14 0" stroke="#1D2A31" stroke-width="2.2" stroke-linecap="round"/>
+  <text x="80" y="43" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" fill="#1D2A31">Maya R.</text><text x="80" y="65" font-family="Inter, Arial, sans-serif" font-size="12" fill="#6E7A80">2h ago · Progress</text>
+  <text x="32" y="104" font-family="Inter, Arial, sans-serif" font-size="15" fill="#1D2A31">Hit a new deadlift PR today.</text><text x="32" y="128" font-family="Inter, Arial, sans-serif" font-size="15" fill="#1D2A31">Consistency wins.</text>
+  <path d="M34 166c6-8 18-8 24 0 6-8 18-8 24 0" stroke="#9AA3A8" stroke-width="2" stroke-linecap="round"/><text x="94" y="170" font-family="Inter, Arial, sans-serif" font-size="13" fill="#6E7A80">45</text>
+  <path d="M152 158h34v24l-8-6h-26v-18Z" stroke="#9AA3A8" stroke-width="2" stroke-linejoin="round"/><text x="198" y="174" font-family="Inter, Arial, sans-serif" font-size="13" fill="#6E7A80">12</text>
+</svg>

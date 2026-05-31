@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="210" viewBox="0 0 820 210">
+<rect width="820" height="210" rx="34" fill="#FFFFFF" stroke="#FBCFE8"/>
+<style>.i{fill:none;stroke:#4A244B;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.a{stroke:#EC4899}.l{font:600 14px Inter,Arial;fill:#4A244B}</style>
+<g transform="translate(40 45)"><path class="i a" d="M40 86C-6 52 14 14 40 38c26-24 46 14 0 48Z"/><text class="l" x="40" y="128" text-anchor="middle">Like</text></g>
+<g transform="translate(170 45)"><path class="i" d="M18 20h62v48H44L28 84V68H18Z"/><text class="l" x="50" y="128" text-anchor="middle">Comment</text></g>
+<g transform="translate(310 45)"><path class="i" d="M14 24 86 12 60 88 46 56Z"/><text class="l" x="50" y="128" text-anchor="middle">Share</text></g>
+<g transform="translate(450 45)"><path class="i" d="M30 46a14 14 0 1 0 0-1M70 46a14 14 0 1 0 0-1M14 86c6-18 30-22 44-10 14-12 38-8 44 10"/><text class="l" x="58" y="128" text-anchor="middle">Group</text></g>
+<g transform="translate(600 45)"><path class="i" d="M38 38a18 18 0 1 0 0-1M14 86c5-22 43-22 48 0M78 34v38M59 53h38"/><text class="l" x="56" y="128" text-anchor="middle">Add Friend</text></g>
+<g transform="translate(740 45)"><circle cx="14" cy="48" r="5" fill="#4A244B"/><circle cx="40" cy="48" r="5" fill="#4A244B"/><circle cx="66" cy="48" r="5" fill="#4A244B"/><text class="l" x="40" y="128" text-anchor="middle">More</text></g>
+</svg>

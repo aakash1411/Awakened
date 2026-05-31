@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="220" viewBox="0 0 680 220">
+<defs><filter id="s"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#EC4899" flood-opacity=".10"/></filter></defs>
+<rect width="680" height="220" rx="34" fill="#FFF7FB"/>
+<g filter="url(#s)"><rect x="34" y="34" width="612" height="152" rx="28" fill="white" stroke="#FBCFE8"/></g>
+<circle cx="98" cy="110" r="34" fill="#FCE7F3"/><path d="M78 110h40M88 98v24M108 98v24" stroke="#EC4899" stroke-width="6" stroke-linecap="round"/>
+<text x="150" y="88" font-family="Inter,Arial" font-size="25" font-weight="700" fill="#4A244B">Strength Training</text>
+<text x="150" y="120" font-family="Inter,Arial" font-size="17" fill="#8A668A">Log your workout</text>
+<text x="150" y="151" font-family="Inter,Arial" font-size="17" fill="#16A34A">1 / 1 completed</text>
+<text x="530" y="151" font-family="Inter,Arial" font-size="17" font-weight="700" fill="#4A244B">+25 XP</text>
+<path d="M584 110l18 18 34-40" fill="none" stroke="#22C55E" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

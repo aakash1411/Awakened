@@ -1,61 +1,98 @@
-//
-//  ContentView.swift
-//  Awakened
-//
-//  Created by Aakash on 4/9/26.
-//
-
 import SwiftUI
 import SwiftData
 
+/// Root content view that handles navigation between onboarding and main app
 struct ContentView: View {
+    @EnvironmentObject private var appState: AppState
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
+        Group {
+            if appState.isOnboardingComplete {
+                MainTabView()
+            } else {
+                OnboardingView()
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+        }
+        .onAppear {
+            appState.loadPlayer(from: modelContext)
+        }
+        .overlay {
+            // Level up animation overlay
+            if appState.showLevelUpAnimation, let info = appState.levelUpInfo {
+                LevelUpOverlay(info: info) {
+                    appState.dismissLevelUp()
                 }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
+                .transition(.opacity)
             }
-        } detail: {
-            Text("Select an item")
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+        .overlay(alignment: .top) {
+            // System notifications
+            NotificationStack(notifications: appState.pendingNotifications) { notification in
+                appState.dismissNotification(notification)
             }
         }
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+/// Main tab view with bottom navigation
+struct MainTabView: View {
+    @EnvironmentObject private var appState: AppState
+    
+    var body: some View {
+        TabView(selection: $appState.selectedTab) {
+            DashboardView()
+                .tabItem {
+                    Label(AppTab.status.title, systemImage: AppTab.status.icon)
+                }
+                .tag(AppTab.status)
+            
+            NavigationStack {
+                NutritionView()
+            }
+                .tabItem {
+                    Label(AppTab.nutrition.title, systemImage: AppTab.nutrition.icon)
+                }
+                .tag(AppTab.nutrition)
+            
+            NavigationStack {
+                WorkoutsView()
+            }
+                .tabItem {
+                    Label(AppTab.workouts.title, systemImage: AppTab.workouts.icon)
+                }
+                .tag(AppTab.workouts)
+            
+            SocialTabView()
+                .tabItem {
+                    Label(AppTab.social.title, systemImage: AppTab.social.icon)
+                }
+                .tag(AppTab.social)
+            
+            ProfileView()
+                .tabItem {
+                    Label(AppTab.profile.title, systemImage: AppTab.profile.icon)
+                }
+                .tag(AppTab.profile)
+        }
+        .tint(AppColors.primaryBlue)
+    }
+}
+
+#Preview("Content View - Onboarding") {
+    let appState = AppState()
+    appState.isOnboardingComplete = false
+    
+    return ContentView()
+        .environmentObject(appState)
+        .modelContainer(for: [Player.self, Stat.self, Quest.self, SyncRecord.self, Exercise.self, WorkoutSession.self, WorkoutSet.self, WorkoutTemplate.self, PersonalRecord.self, ReadingEntry.self, LearningSession.self, Achievement.self, FoodItem.self, MealEntry.self, BodyMeasurement.self], inMemory: true)
+}
+
+#Preview("Content View - Main") {
+    let appState = AppState()
+    appState.isOnboardingComplete = true
+    
+    return ContentView()
+        .environmentObject(appState)
+        .modelContainer(for: [Player.self, Stat.self, Quest.self, SyncRecord.self, Exercise.self, WorkoutSession.self, WorkoutSet.self, WorkoutTemplate.self, PersonalRecord.self, ReadingEntry.self, LearningSession.self, Achievement.self, FoodItem.self, MealEntry.self, BodyMeasurement.self], inMemory: true)
 }

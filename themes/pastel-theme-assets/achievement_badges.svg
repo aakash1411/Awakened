@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="220" viewBox="0 0 1000 220">
+<rect width="1000" height="220" rx="34" fill="#FFF7FB"/>
+<style>.l{font:600 14px Inter,Arial;fill:#4A244B}.w{stroke:white;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;fill:none}</style>
+<g transform="translate(50 34)"><circle cx="55" cy="55" r="50" fill="#F472B6"/><path class="w" d="M55 28l8 18 20 2-15 13 5 20-18-10-18 10 5-20-15-13 20-2Z"/><text class="l" x="55" y="145" text-anchor="middle">First Workout</text></g>
+<g transform="translate(205 34)"><circle cx="55" cy="55" r="50" fill="#FB923C"/><path class="w" d="M55 26c22 24 24 54 0 70-24-16-22-46 0-70Z"/><text class="l" x="55" y="145" text-anchor="middle">7 Day Streak</text></g>
+<g transform="translate(360 34)"><circle cx="55" cy="55" r="50" fill="#93C5FD"/><path class="w" d="M55 96V28M55 68c-24-20-38 0-30 22 16 0 26-8 30-22Zm0-2c24-20 38 0 30 22-16 0-26-8-30-22Z"/><text class="l" x="55" y="145" text-anchor="middle">Nutrition Master</text></g>
+<g transform="translate(515 34)"><circle cx="55" cy="55" r="50" fill="#C084FC"/><path class="w" d="M55 25v46M33 72c8 18 36 18 44 0M36 48c-12-5-20 8-6 18M74 48c12-5 20 8 6 18"/><text class="l" x="55" y="145" text-anchor="middle">Mindful</text></g>
+<g transform="translate(670 34)"><circle cx="55" cy="55" r="50" fill="#FCA5A5"/><path class="w" d="M58 74c20-12 20-42-2-48-18 4-30 22-20 40 5 9 16 13 22 8Z"/><path class="w" d="M42 35c-8-10-20-2-14 10"/><text class="l" x="55" y="145" text-anchor="middle">Early Bird</text></g>
+<g transform="translate(825 34)"><circle cx="55" cy="55" r="50" fill="#F9A8D4"/><path class="w" d="M28 62c20 30 34 34 54 0M35 40v26M50 32v34M65 40v26M80 48v18"/><text class="l" x="55" y="145" text-anchor="middle">Helping Hand</text></g>
+</svg>

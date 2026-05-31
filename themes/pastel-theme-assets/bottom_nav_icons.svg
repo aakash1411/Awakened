@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="170" viewBox="0 0 920 170">
+<rect width="920" height="170" rx="30" fill="#FFFFFF" stroke="#F5D0FE"/>
+<style>.i{fill:none;stroke:#64748B;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.active{stroke:#EC4899}.t{font:600 14px Inter,Arial;fill:#64748B}.ta{fill:#EC4899}</style>
+<g transform="translate(45 35)"><path class="i active" d="M12 40 40 18l28 22v36H50V54H30v22H12Z"/><text class="t ta" x="40" y="112" text-anchor="middle">Home</text></g>
+<g transform="translate(175 35)"><path class="i" d="M22 76V48M40 76V30M58 76V18"/><text class="t" x="40" y="112" text-anchor="middle">Progress</text></g>
+<g transform="translate(305 35)"><path class="i" d="M12 48h56M22 36v24M58 36v24M34 28v40M46 28v40"/><text class="t" x="40" y="112" text-anchor="middle">Workout</text></g>
+<g transform="translate(435 35)"><path class="i" d="M40 74c22-16 30-34 19-52-16 2-26 12-19 30-7-18-23-26-38-19 2 20 15 35 38 41Z"/><text class="t" x="40" y="112" text-anchor="middle">Nutrition</text></g>
+<g transform="translate(565 35)"><path class="i" d="M22 22h36v54H22zM30 14v16M50 14v16M30 42h20M30 56h16"/><text class="t" x="40" y="112" text-anchor="middle">Quests</text></g>
+<g transform="translate(695 35)"><path class="i" d="M28 44a12 12 0 1 0 0-1M52 44a12 12 0 1 0 0-1M16 76c4-14 20-18 32-10 12-8 28-4 32 10"/><text class="t" x="40" y="112" text-anchor="middle">Community</text></g>
+<g transform="translate(825 35)"><path class="i" d="M40 38a16 16 0 1 0 0-1M16 76c4-20 44-20 48 0"/><text class="t" x="40" y="112" text-anchor="middle">Profile</text></g>
+</svg>

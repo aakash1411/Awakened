@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+<defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#FFF7FB"/><stop offset="1" stop-color="#F5F3FF"/></linearGradient></defs>
+<rect width="1200" height="900" fill="url(#bg)"/>
+<text x="48" y="70" font-family="Inter,Arial" font-size="36" font-weight="800" fill="#4A244B">Female Theme SVG Asset Pack</text>
+<text x="48" y="108" font-family="Inter,Arial" font-size="18" fill="#8A668A">Soft pastel, polished wellness assets for quests, nutrition, progress, community, and profile screens.</text>
+<image href="five_field_icons.svg" x="48" y="150" width="540" height="108"/>
+<image href="progress_pentagon_chart.svg" x="650" y="135" width="360" height="360"/>
+<image href="quest_card.svg" x="48" y="300" width="500" height="162"/>
+<image href="nutrition_assets.svg" x="48" y="500" width="500" height="167"/>
+<image href="community_icons.svg" x="48" y="705" width="500" height="128"/>
+<image href="rank_badges.svg" x="610" y="520" width="520" height="120"/>
+<image href="achievement_badges.svg" x="610" y="665" width="520" height="114"/>
+</svg>

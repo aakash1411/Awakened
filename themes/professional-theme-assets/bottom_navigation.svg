@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="110" viewBox="0 0 430 110" fill="none">
+  <rect x="12" y="14" width="406" height="82" rx="28" fill="#FFFFFF" stroke="#E5E0D8"/>
+  <g stroke="#9AA3A8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6E7A80">
+    <g transform="translate(49 28)"><path d="M0 18l15-13 15 13v24H5V18" fill="#1D2A31" stroke="#1D2A31"/><text x="15" y="64" text-anchor="middle" stroke="none" fill="#1D2A31">Home</text></g>
+    <g transform="translate(126 28)"><path d="M3 42V24m12 18V10m12 32V17"/><text x="15" y="64" text-anchor="middle" stroke="none">Progress</text></g>
+    <g transform="translate(200 18)"><circle cx="15" cy="31" r="25" fill="#1D2A31" stroke="#1D2A31"/><path d="M15 20v22M4 31h22" stroke="#FFFFFF"/><text x="15" y="74" text-anchor="middle" stroke="none">Log</text></g>
+    <g transform="translate(279 28)"><circle cx="9" cy="16" r="6"/><circle cx="24" cy="16" r="6"/><path d="M0 42c2-10 8-15 17-15s15 5 18 15"/><text x="17" y="64" text-anchor="middle" stroke="none">Community</text></g>
+    <g transform="translate(365 28)"><circle cx="14" cy="13" r="7"/><path d="M1 42c2-12 8-18 13-18s12 6 14 18"/><text x="14" y="64" text-anchor="middle" stroke="none">Profile</text></g>
+  </g>
+</svg>

@@ -1,0 +1,39 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+  <linearGradient id="violetGlow" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#7C5CFF"/>
+    <stop offset="50%" stop-color="#B66CFF"/>
+    <stop offset="100%" stop-color="#32D7FF"/>
+  </linearGradient>
+  <linearGradient id="cardShade" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#172033"/>
+    <stop offset="100%" stop-color="#090D18"/>
+  </linearGradient>
+  <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="6" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="512" height="512" rx="48" fill="#080C16"/>
+<text x="256" y="54" fill="#F4F7FF" font-family="Inter,Arial" font-size="28" font-weight="800" text-anchor="middle">Field Balance</text>
+<polygon points="256.0,212.0 284.5,232.7 273.6,266.3 238.4,266.3 227.5,232.7" fill="none" stroke="#34405A" stroke-width="1" opacity=".75"/>
+<polygon points="256.0,182.0 313.1,223.5 291.3,290.5 220.7,290.5 198.9,223.5" fill="none" stroke="#34405A" stroke-width="1" opacity=".75"/>
+<polygon points="256.0,152.0 341.6,214.2 308.9,314.8 203.1,314.8 170.4,214.2" fill="none" stroke="#34405A" stroke-width="1" opacity=".75"/>
+<polygon points="256.0,122.0 370.1,204.9 326.5,339.1 185.5,339.1 141.9,204.9" fill="none" stroke="#34405A" stroke-width="1" opacity=".75"/>
+<polygon points="256.0,92.0 398.7,195.6 344.2,363.4 167.8,363.4 113.3,195.6" fill="none" stroke="#34405A" stroke-width="1" opacity=".75"/>
+<line x1="256" y1="242" x2="256.0" y2="92.0" stroke="#34405A" stroke-width="1" opacity=".7"/>
+<line x1="256" y1="242" x2="398.7" y2="195.6" stroke="#34405A" stroke-width="1" opacity=".7"/>
+<line x1="256" y1="242" x2="344.2" y2="363.4" stroke="#34405A" stroke-width="1" opacity=".7"/>
+<line x1="256" y1="242" x2="167.8" y2="363.4" stroke="#34405A" stroke-width="1" opacity=".7"/>
+<line x1="256" y1="242" x2="113.3" y2="195.6" stroke="#34405A" stroke-width="1" opacity=".7"/>
+<polygon points="256.0,125.0 358.7,208.6 313.3,320.9 185.5,339.1 134.7,202.6" fill="url(#violetGlow)" opacity=".42" filter="url(#softGlow)"/>
+<polygon points="256.0,125.0 358.7,208.6 313.3,320.9 185.5,339.1 134.7,202.6" fill="none" stroke="#9E7CFF" stroke-width="4"/>
+<circle cx="256.0" cy="125.0" r="6" fill="#EEF4FF" stroke="#8F6CFF" stroke-width="3"/><circle cx="358.7" cy="208.6" r="6" fill="#EEF4FF" stroke="#8F6CFF" stroke-width="3"/><circle cx="313.3" cy="320.9" r="6" fill="#EEF4FF" stroke="#8F6CFF" stroke-width="3"/><circle cx="185.5" cy="339.1" r="6" fill="#EEF4FF" stroke="#8F6CFF" stroke-width="3"/><circle cx="134.7" cy="202.6" r="6" fill="#EEF4FF" stroke="#8F6CFF" stroke-width="3"/>
+<text x="256.0" y="52.0" fill="#FF5F7E" font-family="Inter,Arial" font-size="18" font-weight="700" text-anchor="middle">Strength</text>
+<text x="441.5" y="186.7" fill="#68E184" font-family="Inter,Arial" font-size="18" font-weight="700" text-anchor="middle">Vitality</text>
+<text x="370.6" y="404.8" fill="#FFD15C" font-family="Inter,Arial" font-size="18" font-weight="700" text-anchor="middle">Sensation</text>
+<text x="141.4" y="404.8" fill="#B66CFF" font-family="Inter,Arial" font-size="18" font-weight="700" text-anchor="middle">Spirit</text>
+<text x="70.5" y="186.7" fill="#5FA8FF" font-family="Inter,Arial" font-size="18" font-weight="700" text-anchor="middle">Intelligence</text>
+<text x="256" y="462" fill="#AEB7CC" font-family="Inter,Arial" font-size="18" text-anchor="middle">Balanced growth across five fields</text>
+</svg>

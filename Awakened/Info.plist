@@ -5,6 +5,16 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
+		<string>fetch</string>
+		<string>processing</string>
 	</array>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.awakened.healthsync</string>
+	</array>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Awakened reads your health data (steps, workouts, heart rate, sleep, and body measurements) to track your fitness stats and award XP.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Awakened saves workout and mindful session data to Apple Health so your progress stays in sync across apps.</string>
 </dict>
 </plist>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520">
+  <defs>
+    <linearGradient id="pinkGrad" x1="0" x2="1"><stop stop-color="#F472B6"/><stop offset="1" stop-color="#C084FC"/></linearGradient>
+    <linearGradient id="softBg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF7FB"/><stop offset="1" stop-color="#F5F3FF"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#7C3AED" flood-opacity=".12"/></filter>
+  </defs>
+  <rect width="960" height="520" rx="36" fill="url(#softBg)"/>
+  <text x="48" y="72" font-family="Inter, Arial" font-size="34" font-weight="700" fill="#4A244B">Female Theme Tokens</text>
+  <text x="48" y="112" font-family="Inter, Arial" font-size="17" fill="#8A668A">Soft, polished, wellness-focused palette for adults.</text>
+  <g font-family="Inter, Arial" font-size="15" fill="#4A244B">
+    <g transform="translate(48 160)"><circle r="38" cx="38" cy="38" fill="#F472B6"/><text x="0" y="102">Rose 400</text><text x="0" y="124" fill="#8A668A">#F472B6</text></g>
+    <g transform="translate(170 160)"><circle r="38" cx="38" cy="38" fill="#EC4899"/><text x="0" y="102">Pink 500</text><text x="0" y="124" fill="#8A668A">#EC4899</text></g>
+    <g transform="translate(292 160)"><circle r="38" cx="38" cy="38" fill="#C084FC"/><text x="0" y="102">Violet 400</text><text x="0" y="124" fill="#8A668A">#C084FC</text></g>
+    <g transform="translate(414 160)"><circle r="38" cx="38" cy="38" fill="#60A5FA"/><text x="0" y="102">Blue 400</text><text x="0" y="124" fill="#8A668A">#60A5FA</text></g>
+    <g transform="translate(536 160)"><circle r="38" cx="38" cy="38" fill="#34D399"/><text x="0" y="102">Mint 400</text><text x="0" y="124" fill="#8A668A">#34D399</text></g>
+    <g transform="translate(658 160)"><circle r="38" cx="38" cy="38" fill="#FDBA74"/><text x="0" y="102">Peach 300</text><text x="0" y="124" fill="#8A668A">#FDBA74</text></g>
+    <g transform="translate(780 160)"><circle r="38" cx="38" cy="38" fill="#FFF7FB" stroke="#E9D5FF"/><text x="0" y="102">Surface</text><text x="0" y="124" fill="#8A668A">#FFF7FB</text></g>
+  </g>
+  <g transform="translate(48 365)" filter="url(#shadow)">
+    <rect width="864" height="92" rx="28" fill="white" stroke="#F5D0FE"/>
+    <circle cx="58" cy="46" r="24" fill="url(#pinkGrad)"/>
+    <text x="100" y="41" font-family="Inter, Arial" font-size="20" font-weight="700" fill="#4A244B">Style direction</text>
+    <text x="100" y="68" font-family="Inter, Arial" font-size="16" fill="#8A668A">Rounded cards, subtle outlines, airy spacing, positive progress cues, and calm decorative details.</text>
+  </g>
+</svg>
