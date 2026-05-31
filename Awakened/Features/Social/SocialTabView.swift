@@ -3,6 +3,16 @@ import SwiftUI
 /// Main social tab — hub linking to friends, guild, feed, leaderboards, and duels
 struct SocialTabView: View {
     @EnvironmentObject private var appState: AppState
+    @State private var searchText = ""
+    @State private var scope: CommunityScope = .forYou
+
+    /// Community feed scopes, matching the mockup's segmented header.
+    enum CommunityScope: String, CaseIterable, Identifiable {
+        case forYou = "For You"
+        case following = "Following"
+        case groups = "Groups"
+        var id: String { rawValue }
+    }
     
     var body: some View {
         NavigationStack {
@@ -12,8 +22,12 @@ struct SocialTabView: View {
                 
                 ScrollView {
                     VStack(spacing: AppSpacing.lg) {
-                        socialStatsBanner
-                        socialNavCards
+                        searchField
+                        scopePicker
+                        if scope == .forYou && searchText.isEmpty {
+                            socialStatsBanner
+                        }
+                        scopedLinks
                         Spacer(minLength: AppSpacing.xxl)
                     }
                     .padding(.horizontal, AppSpacing.screenHorizontal)
@@ -24,29 +38,66 @@ struct SocialTabView: View {
             .navigationBarTitleDisplayMode(.large)
         }
     }
-    
+
+    // MARK: - Header
+
+    private var searchField: some View {
+        HStack(spacing: AppSpacing.sm) {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(AppColors.textTertiary)
+            TextField("Search posts, people, topics", text: $searchText)
+                .foregroundColor(AppColors.textPrimary)
+                .autocorrectionDisabled()
+            if !searchText.isEmpty {
+                Button {
+                    searchText = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(AppColors.textTertiary)
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(AppSpacing.md)
+        .background(AppColors.surface)
+        .clipShape(RoundedRectangle(cornerRadius: AppSpacing.cardCornerRadius, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: AppSpacing.cardCornerRadius, style: .continuous)
+                .stroke(AppColors.border, lineWidth: 1)
+        )
+    }
+
+    private var scopePicker: some View {
+        Picker("", selection: $scope) {
+            ForEach(CommunityScope.allCases) { scope in
+                Text(scope.rawValue).tag(scope)
+            }
+        }
+        .pickerStyle(.segmented)
+    }
+
     // MARK: - Nav Cards
     
-    private var socialNavCards: some View {
-        VStack(spacing: AppSpacing.sm) {
-            socialNavCardsTop
-            socialNavCardsBottom
-        }
+    /// True when a row title matches the current search (or search is empty).
+    private func matches(_ title: String) -> Bool {
+        searchText.isEmpty || title.localizedCaseInsensitiveContains(searchText)
     }
-    
-    private var socialNavCardsTop: some View {
+
+    /// Hub destinations, organized by the selected scope and filtered by search.
+    /// (The mockup's free-text post feed needs a posts data model; until then
+    /// these tabs organize the existing social hub.)
+    private var scopedLinks: some View {
         VStack(spacing: AppSpacing.sm) {
-            friendsLink
-            feedLink
-            guildLink
-        }
-    }
-    
-    private var socialNavCardsBottom: some View {
-        VStack(spacing: AppSpacing.sm) {
-            leaderboardsLink
-            duelsLink
-            seasonsLink
+            if scope != .groups {
+                if matches("Friends") { friendsLink }
+                if matches("Activity Feed") { feedLink }
+                if matches("Leaderboards") { leaderboardsLink }
+            }
+            if scope != .following {
+                if matches("Guild") { guildLink }
+                if matches("Duels") { duelsLink }
+                if matches("Seasons") { seasonsLink }
+            }
         }
     }
     
