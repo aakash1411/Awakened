@@ -113,9 +113,9 @@ struct ProfileHeader: View {
             
             // Quick stats
             HStack(spacing: AppSpacing.xl) {
+                QuickStat(title: "Workouts", value: "\(player.workoutSessions.count)")
+                QuickStat(title: "Day Streak", value: "\(player.currentStreak)")
                 QuickStat(title: "Total XP", value: formatNumber(player.totalXP))
-                QuickStat(title: "Streak", value: "\(player.currentStreak) days")
-                QuickStat(title: "Quests", value: "\(player.completedQuests.count)")
             }
         }
         .padding(AppSpacing.lg)
