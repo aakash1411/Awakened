@@ -72,7 +72,7 @@ struct SenseView: View {
                 .padding(.top, AppSpacing.md)
             }
         }
-        .navigationTitle("Sense")
+        .navigationTitle("Spirit")
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

@@ -45,7 +45,7 @@ struct AgilityView: View {
                 .padding(.top, AppSpacing.md)
             }
         }
-        .navigationTitle("Agility")
+        .navigationTitle("Sensation")
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

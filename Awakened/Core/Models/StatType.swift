@@ -10,13 +10,16 @@ enum StatType: String, Codable, CaseIterable, Identifiable {
     
     var id: String { rawValue }
     
-    /// Full display name
+    /// Full display name.
+    /// Note: the enum cases keep their original identifiers (`agility`, `sense`)
+    /// for persistence/back-compat, but they are presented as the mockup's
+    /// "Five Fields": `agility → Sensation`, `sense → Spirit`.
     var displayName: String {
         switch self {
         case .strength: return "Strength"
-        case .agility: return "Agility"
+        case .agility: return "Sensation"
         case .vitality: return "Vitality"
-        case .sense: return "Sense"
+        case .sense: return "Spirit"
         case .intelligence: return "Intelligence"
         }
     }
@@ -25,9 +28,9 @@ enum StatType: String, Codable, CaseIterable, Identifiable {
     var shortName: String {
         switch self {
         case .strength: return "STR"
-        case .agility: return "AGI"
+        case .agility: return "SEN"
         case .vitality: return "VIT"
-        case .sense: return "SEN"
+        case .sense: return "SPI"
         case .intelligence: return "INT"
         }
     }
@@ -36,21 +39,23 @@ enum StatType: String, Codable, CaseIterable, Identifiable {
     var icon: String {
         switch self {
         case .strength: return "figure.strengthtraining.traditional"
-        case .agility: return "figure.flexibility"
+        case .agility: return "snowflake"
         case .vitality: return "heart.fill"
-        case .sense: return "eye.fill"
+        case .sense: return "sparkles"
         case .intelligence: return "brain.head.profile"
         }
     }
     
-    /// Associated color for this stat
+    /// Associated color for this stat (matches the Anime mockup field colours:
+    /// Strength red, Vitality green, Intelligence blue, Spirit purple,
+    /// Sensation orange). Reuses the central identity-colour constants.
     var color: Color {
         switch self {
-        case .strength: return AppColors.strengthColor
-        case .agility: return AppColors.agilityColor
-        case .vitality: return AppColors.vitalityColor
-        case .sense: return AppColors.senseColor
-        case .intelligence: return AppColors.intelligenceColor
+        case .strength: return AppColors.strengthColor      // red
+        case .agility: return AppColors.vitalityColor       // Sensation – orange
+        case .vitality: return AppColors.agilityColor       // Vitality – green
+        case .sense: return AppColors.senseColor            // Spirit – purple
+        case .intelligence: return AppColors.intelligenceColor // blue
         }
     }
     
@@ -60,11 +65,11 @@ enum StatType: String, Codable, CaseIterable, Identifiable {
         case .strength:
             return "Physical power from weight training. Increases damage output and carrying capacity."
         case .agility:
-            return "Speed and reflexes from calisthenics. Improves reaction time and flexibility."
+            return "Resilience from breathwork and cold exposure. Sharpens recovery and body awareness."
         case .vitality:
             return "Endurance from cardio training. Increases stamina and recovery rate."
         case .sense:
-            return "Awareness from meditation. Enhances perception, focus, and intuition."
+            return "Spiritual focus from meditation. Enhances perception, calm, and intuition."
         case .intelligence:
             return "Mental acuity from learning. Expands knowledge and problem-solving ability."
         }
@@ -76,7 +81,7 @@ enum StatType: String, Codable, CaseIterable, Identifiable {
         case .strength:
             return ["Weight lifting", "Resistance training", "Bodyweight exercises", "CrossFit"]
         case .agility:
-            return ["Calisthenics", "Yoga", "Martial arts", "Dance", "Gymnastics"]
+            return ["Cold shower", "Breathwork", "Mobility", "Yoga", "Stretching"]
         case .vitality:
             return ["Running", "Cycling", "Swimming", "HIIT", "Walking"]
         case .sense:
@@ -86,13 +91,14 @@ enum StatType: String, Codable, CaseIterable, Identifiable {
         }
     }
     
-    /// Order for display (matches radar chart vertices)
+    /// Order for display (matches radar chart vertices, clockwise from top):
+    /// Strength, Vitality, Sensation, Spirit, Intelligence.
     var displayOrder: Int {
         switch self {
         case .strength: return 0
-        case .agility: return 1
-        case .vitality: return 2
-        case .sense: return 3
+        case .vitality: return 1
+        case .agility: return 2   // Sensation
+        case .sense: return 3     // Spirit
         case .intelligence: return 4
         }
     }

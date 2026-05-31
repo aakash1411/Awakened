@@ -168,9 +168,9 @@ enum LeaderboardType: String, CaseIterable, Identifiable {
         case .questsCompleted: return "Quests"
         case .duelWins: return "Duel Wins"
         case .strengthLevel: return "Strength"
-        case .agilityLevel: return "Agility"
+        case .agilityLevel: return "Sensation"
         case .vitalityLevel: return "Vitality"
-        case .senseLevel: return "Sense"
+        case .senseLevel: return "Spirit"
         case .intelligenceLevel: return "Intelligence"
         }
     }
