@@ -92,7 +92,9 @@ struct RankLevelUpView: View {
         let lower = rank.minLevel
         let upper = nextRank?.minLevel ?? rank.maxLevel
         let span = max(upper - lower, 1)
-        let fraction = min(max(Double(player.level - lower) / Double(span), 0), 1)
+        let fraction: Double = nextRank == nil
+            ? 1.0
+            : min(max(Double(player.level - lower) / Double(span), 0), 1)
 
         return card {
             VStack(alignment: .leading, spacing: AppSpacing.sm) {
