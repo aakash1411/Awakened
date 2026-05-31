@@ -9,6 +9,7 @@ struct DashboardView: View {
     @State private var showWeeklyRecap = false
     @State private var weeklyRecap: WeeklyRecap?
     @State private var selectedStat: StatType?
+    @State private var showAllQuests = false
     
     private var player: Player? {
         players.first
@@ -41,7 +42,9 @@ struct DashboardView: View {
                             .padding(.horizontal, AppSpacing.screenHorizontal)
                             
                             // 3. Daily Quests
-                            DailyQuestCard(quests: player.todayQuests)
+                            DailyQuestCard(quests: player.todayQuests) {
+                                showAllQuests = true
+                            }
                                 .padding(.horizontal, AppSpacing.screenHorizontal)
                             
                             // 4. Streak Stats
@@ -102,6 +105,9 @@ struct DashboardView: View {
             }
             .onAppear {
                 checkWeeklyRecap()
+            }
+            .navigationDestination(isPresented: $showAllQuests) {
+                DailyQuestsView()
             }
             .navigationDestination(item: $selectedStat) { statType in
                 switch statType {
@@ -401,6 +407,8 @@ struct PenaltyZoneWarning: View {
 
 struct DailyQuestCard: View {
     let quests: [Quest]
+    /// Optional "See all" action; when set, a chevron affordance is shown.
+    var onSeeAll: (() -> Void)? = nil
     @State private var isExpanded = false
     
     private var completedCount: Int {
@@ -425,9 +433,22 @@ struct DailyQuestCard: View {
                 
                 Spacer()
                 
-                Text("\(completedCount)/\(totalCount) Completed")
-                    .font(AppFonts.subheadline)
-                    .foregroundColor(AppColors.textTertiary)
+                if let onSeeAll {
+                    Button(action: onSeeAll) {
+                        HStack(spacing: 4) {
+                            Text("\(completedCount)/\(totalCount)")
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 11, weight: .semibold))
+                        }
+                        .font(AppFonts.subheadline)
+                        .foregroundColor(AppColors.accentPurple)
+                    }
+                    .buttonStyle(.plain)
+                } else {
+                    Text("\(completedCount)/\(totalCount) Completed")
+                        .font(AppFonts.subheadline)
+                        .foregroundColor(AppColors.textTertiary)
+                }
             }
             
             if quests.isEmpty {
