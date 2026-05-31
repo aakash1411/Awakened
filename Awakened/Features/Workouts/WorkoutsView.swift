@@ -37,8 +37,8 @@ struct WorkoutsView: View {
                         resumeCard(inProgress)
                     }
                     
-                    // Muscle map (anatomy with color-coded levels)
-                    MuscleMapView()
+                    // 3D anatomy (rotatable, color-ranked muscle map)
+                    WorkoutAnatomyView()
                     
                     // Quick actions
                     quickActions
